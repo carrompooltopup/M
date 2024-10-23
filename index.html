@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #ffcc00, #ff6699);
+            background: linear-gradient(to right, #20B2AA, #20B2AA);
             margin: 0;
             padding: 0;
         }
@@ -27,7 +27,18 @@
             width: 30px;
             vertical-align: middle;
             margin-left: 5px;
-            margin-bottom: 5px;
+        }
+
+        .login-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
         }
 
         .product-list {
@@ -60,6 +71,7 @@
             padding: 10px 20px;
             cursor: pointer;
             border-radius: 5px;
+            margin-top: 10px;
         }
 
         .buy-now {
@@ -74,7 +86,13 @@
             background-color: #4caf50;
         }
 
-        .container {
+        .back {
+            background-color: #f44336;
+        }
+
+        .container,
+        .payment-container,
+        .login-container {
             display: none;
             background-color: #e0f7fa;
             width: 90%;
@@ -84,37 +102,10 @@
             margin: 50px auto;
         }
 
-        .container.active {
+        .container.active,
+        .payment-container.active,
+        .login-container.active {
             display: block;
-        }
-
-        .payment-container {
-            display: none;
-            background-color: #b71c1c;
-            color: white;
-            width: 90%;
-            max-width: 400px;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 50px auto;
-            position: relative;
-        }
-
-        .payment-container.active {
-            display: block;
-        }
-
-        .loading {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .loading img {
-            width: 50px;
-            height: 50px;
         }
 
         input {
@@ -126,44 +117,11 @@
             font-size: 16px;
         }
 
-        .copy-btn {
-            background-color: white;
-            color: #b71c1c;
-            border: none;
-            padding: 5px 10px;
-            font-size: 14px;
-            cursor: pointer;
-            border-radius: 3px;
-            margin-left: 5px;
-        }
-
         .footer {
             display: flex;
             justify-content: center;
             gap: 20px;
             padding: 20px;
-        }
-
-        .footer button {
-            display: flex;
-            align-items: center;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-            font-size: 16px;
-            gap: 10px;
-        }
-
-        .footer img {
-            width: 24px;
-            height: 24px;
-        }
-
-        .footer button:hover {
-            opacity: 0.8;
         }
     </style>
 </head>
@@ -172,34 +130,21 @@
     <div class="header">
         <h1>Carrom Pool</h1>
         <img src="https://i.ibb.co/5FZ6HmM/12559876.png" alt="Verification Logo">
+        <button class="login-button" onclick="showLoginForm()">Login</button>
     </div>
 
     <div class="product-list">
         <div class="product">
-            <span style="color:red;">-২০%</span>
-            <img src="https://i.ibb.co/d092sxC/Picsart-24-10-20-12-32-24-979.png" alt="Product 1">
+            <img src="https://i.ibb.co/d092sxC/Picsart-24-10-20-12-32-24-979.png" alt="Inferno Striker">
             <h3>Inferno Striker💚</h3>
-            <p>Price: 110 BDT</p>
-            <button class="button buy-now" onclick="showUserIdForm(110)">Buy Now</button>
+            <p>Price: 95 BDT</p>
+            <button class="button buy-now" onclick="showUserIdForm(95)">Buy Now</button>
         </div>
         <div class="product">
-            <img src="https://i.ibb.co/4m78c6F/Picsart-24-10-20-12-30-00-471.png" alt="Product 2">
-            <h3>Carrom pass🩵</h3>
-            <p>Price: 180 BDT</p>
-            <button class="button buy-now" onclick="showUserIdForm(180)">Buy Now</button>
-        </div>
-        <div class="product">
-            <img src="https://i.ibb.co.com/F4VWzf1/Picsart-24-10-21-01-25-38-238.jpg" alt="Product 2">
-            <h3>Golden Shorts💛</h3>
-            <p><div style="font-family: Arial, sans-serif; text-decoration: line-through; font-size: 12px;">৳ ২০০</div>
-            Price: 99 BDT</p>
-            <button class="button buy-now" onclick="showUserIdForm(99)">Buy Now</button>
-        </div>
-        <div class="product"> <!-- নতুন প্রোডাক্ট এখানে যুক্ত করা হয়েছে -->
-            <img src="https://i.ibb.co.com/H7C1NMS/Picsart-24-10-21-01-23-23-468.jpg" alt="Product 3"> <!-- আপনার প্রোডাক্ট ইমেজের লিংক এখানে দিন -->
-            <h3>৭ কোটি কয়েন🪙</h3>
-            <p>Price: 120 BDT</p>
-            <button class="button buy-now" onclick="showUserIdForm(120)">Buy Now</button>
+            <img src="https://i.ibb.co/4m78c6F/Picsart-24-10-20-12-30-00-471.png" alt="Carrom Pass">
+            <h3>Carrom Pass🩵</h3>
+            <p>Price: 129 BDT</p>
+            <button class="button buy-now" onclick="showUserIdForm(129)">Buy Now</button>
         </div>
     </div>
 
@@ -207,48 +152,45 @@
         <h2>Carrom User ID লিখুন</h2>
         <input type="text" placeholder="Carrom User ID দিন" id="userIdInput">
         <button class="button submit" onclick="submitUserId()">Submit</button>
+        <button class="button back" onclick="goBack('userIdForm')">Back</button>
     </div>
 
     <div class="payment-container" id="paymentForm">
         <h2>ট্রানজেকশন আইডি দিন</h2>
         <input type="text" placeholder="ট্রানজেকশন আইডি দিন" id="transactionId">
         <p id="amountText"></p>
-        <div class="instructions">
-            <p>• <strong>*167#</strong> ডায়াল করে বা নগদ এপস্য থেকে সেন্ডমানি করতে হবে।</p>
-            <p>• টাকা পাঠিয়ে উপরের বক্সে ট্রানজেকশন আইডি দিয়ে Verify এ ক্লিক করুন।</p>
-            <p>• শুধু মাত্র বিকাশ এবং নগদ এ টাকা পাঠাতে পারবেন।</p>
-            <p>• Nagad/Bkash: <strong>01581050857</strong>
-                <button class="copy-btn" onclick="copyNumber()">Copy</button>
-            </p>
-        </div>
-        <button class="button verify" onclick="verifyPayment()">VERIFY</button>
-
-        <div class="loading" id="loading">
-            <img src="https://i.ibb.co/bX3CvGg/rotate.gif" alt="Loading">
-        </div>
+        <button class="button verify" onclick="verifyPayment()">Verify</button>
+        <button class="button back" onclick="goBack('paymentForm')">Back</button>
     </div>
 
-    <div class="footer">
-        <a href="https://xmostafizur.github.io/Prove-/" target="_blank">
-            <button>
-                <img src="https://i.ibb.co/cCXyNwg/14255746.png" alt="Icon 1">
-                Live prove
-            </button>
-        </a>
-        <a href="https://wa.me/+8801581050857" target="_blank">
-            <button>
-                <img src="https://i.ibb.co/MNDskzJ/2936956.png" alt="Icon 2">
-                Live Chat
-            </button>
-        </a>
+    <div class="login-container" id="loginForm">
+        <h2>Login</h2>
+        <input type="text" placeholder="Username" id="username">
+        <input type="password" placeholder="Password" id="password">
+        <button class="button submit" onclick="login()">Login</button>
+        <button class="button back" onclick="goBack('loginForm')">Back</button>
     </div>
 
     <script>
-        let currentAmount = 0;
+        function showLoginForm() {
+            document.getElementById('loginForm').classList.add('active');
+        }
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === 'admin' && password === '1234') {
+                alert('Login Successful!');
+                document.getElementById('loginForm').classList.remove('active');
+            } else {
+                alert('Invalid username or password.');
+            }
+        }
 
         function showUserIdForm(amount) {
-            currentAmount = amount;
             document.getElementById('userIdForm').classList.add('active');
+            document.getElementById('amountText').textContent = `Amount to pay: ${amount} BDT`;
         }
 
         function submitUserId() {
@@ -256,25 +198,22 @@
             if (userId) {
                 document.getElementById('userIdForm').classList.remove('active');
                 document.getElementById('paymentForm').classList.add('active');
-                document.getElementById('amountText').textContent = `Amount: ${currentAmount} BDT`;
             } else {
-                alert('Please enter a valid User ID.');
+                alert('Please enter your Carrom User ID');
             }
         }
 
-        function copyNumber() {
-            navigator.clipboard.writeText('01581050857');
-            alert('Number copied!');
+        function verifyPayment() {
+            const transactionId = document.getElementById('transactionId').value;
+            if (transactionId) {
+                alert('Payment Verified!');
+            } else {
+                alert('Please enter a valid transaction ID');
+            }
         }
 
-        function verifyPayment() {
-            const loading = document.getElementById('loading');
-            loading.style.display = 'block';
-
-            setTimeout(() => {
-                loading.style.display = 'none';
-                alert('Sorry, the transaction ID is incorrect.');
-            }, 3000);
+        function goBack(formId) {
+            document.getElementById(formId).classList.remove('active');
         }
     </script>
 
